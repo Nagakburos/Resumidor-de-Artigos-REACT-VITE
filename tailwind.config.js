@@ -11,6 +11,6 @@ export default {
         inter:["inter", "sans-serif"],
       }
     },
-  },
+  },  
   plugins: [],
 }

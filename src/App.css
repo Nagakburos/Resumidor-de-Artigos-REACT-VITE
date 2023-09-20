@@ -39,7 +39,7 @@
 }
 
 .gradient {
-  height: fit-content;
+  height: max-content;  
   z-index: 3;
   width: 100%;
   max-width: 640px;
