@@ -1,16 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { linkIcon } from '../assets';
+import { useLazyGetSummaryQuery } from '../Services/article';
 
 const Demo = () => {
   const [article, setArticle] = useState({
     url:'',
     sumary:'',
   });
-  
-  const handleSubmit = async() => {
-    alert('Submitted');
+  const [allArticles, setAllArticles] = useState([]);
 
+  const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery ();
+
+  useEffect(() => {
+    const articlesFromLocalStorage =JSON.parse(localStorage.getItem('articles')
+    )
+    if(articlesFromLocalStorage) {
+      setAllArticles(articlesFromLocalStorage)
+    }
+
+  }, []);
+
+  
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+
+    const { data } = await getSummary({ articleUrl:article.url });
+
+    if(data?.summary) {
+      const newArticle = { ...article, summary: data.summary };
+      const updatedAllArticles = [newArticle, ...allArticles];
+
+      setArticle(newArticle);
+      setAllArticles(updatedAllArticles);
+
+      localStorage.setItem('articles', JSON.stringify(updatedAllArticles))
+    }
   }
 
 
@@ -46,6 +72,20 @@ const Demo = () => {
 
         </form>
         {/* Browser URL History */}
+        <div className='flex floex-col gap-1 max-h-60 overflow-y-auto'>
+          {allArticles.map((item, index) => {
+            <div
+              key={'link-${index}'}
+              onClick={() => setAllArticle(item)}
+              className='link_card'
+            >
+              <div>
+                
+                </div>
+              </div>
+          })}
+
+        </div>
       </div>
       {/* Display Results */}    
     </section>
