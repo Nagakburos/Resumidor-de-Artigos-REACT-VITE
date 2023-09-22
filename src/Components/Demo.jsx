@@ -93,15 +93,22 @@ const Demo = () => {
         {isFetching ? (
           <img src={loader} alt="loader" className="w-20 h-20 object-contain" />
         ) : error ? (
-          <p className="font-inter font-bold text-black">
+          <p className="font-inter font-bold text-black text-center" >
             Uau, Parece que algo de errado não está certo...
             <br />
-            <span>{error?.data?.error}</span>
+            <span className="font-satoshi font-normal text-gray-700">
+            {error?.data?.error}
+            </span>
           </p>
         ) : (
-          <p className="font-inter font-bold text-black">
-            Resultado: {article.summary}
-          </p>
+          article.sumamry && (
+            <div className='flex flex-col gap-3'>
+              <h2 className='font-satoshi font-bold text-gray-600 text-x1'>
+                article <span
+                className='blue_gradient'>summary</span>
+                </h2>              
+              </div>
+          )          
         )}
       </div>
     </section>
