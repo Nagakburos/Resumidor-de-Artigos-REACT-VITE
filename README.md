@@ -8,6 +8,12 @@ ACCESS THE WEB APP HERE:  https://silver-pony-20f3b3.netlify.app/
 
 
 
+**OBS:As this is the use of an API, the article summary function may be unavailable if the amount of free use of this function is exceeded**
+
+
+
+
+
 This article summary is part of a study guided by the JSM channel in which I am immensely grateful for the knowledge provided.
 
 With it you can perform an almost instantaneous summary of articles and websites, just follow the steps as described below;
