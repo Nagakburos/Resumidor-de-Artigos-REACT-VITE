@@ -1,28 +1,30 @@
+import React from 'react';
 import { logo } from '../assets';
 
 const Hero = () => {
   return (
-  <header className="w-full flex justify-center intems-center flex-col">
+    <header className="w-full flex flex-col justify-center items-center">
       <nav className="flex justify-between items-center w-full mb-10 pt-3">
         <img src={logo} alt="sumz_logo" className="w-28 object-contain" />
-        <button
-          type="button"
-          onClick={() => Window.open('https://github.com/Nagakburos')}
+        <a
+          href="https://github.com/Nagakburos"
+          target="_blank"
+          rel="noopener noreferrer"
           className="black_btn"
-          >          
+        >
           GitHub
-        </button>
+        </a>
       </nav>
       <h1 className="head_text">
-        Resuma <br /> Artigos com <br
-        className="max-md:hidden" />
-        <span
-        className="orange_gradient">OpenAi GPT-4</span>
+        Resuma <br /> Artigos com <br className="max-md:hidden" />
+        <span className="orange_gradient">OpenAI GPT-4</span>
       </h1>
-      <h2 className="desc">Simplifique sua vida com RESUM, um resumidor de artigos que transforma textos longos em resumos claros e concisos!
+      <h2 className="desc">
+        Simplifique sua vida com RESUM, um resumidor de artigos que transforma
+        textos longos em resumos claros e concisos!
       </h2>
-    </header>  
-  )
-}
+    </header>
+  );
+};
 
-export default Hero
+export default Hero;

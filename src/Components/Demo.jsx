@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { linkIcon, loader, copy } from '../assets';
+import { linkIcon, loader, copy, tick } from '../assets'; // Importado 'tick' do arquivo de assets
 import { useLazyGetSummaryQuery } from '../Services/article';
 
 const Demo = () => {
@@ -9,6 +9,7 @@ const Demo = () => {
     summary: '', // Corrigi o nome da chave para 'summary'
   });
   const [allArticles, setAllArticles] = useState([]);
+  const [copied, setCopied] = useState(""); // Corrigi a vírgula após 'copied' e removi o espaço extra
 
   const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
 
@@ -34,10 +35,16 @@ const Demo = () => {
 
       localStorage.setItem('articles', JSON.stringify(updatedAllArticles));
     }
-  };
+  }
+
+  const handleCopy = (copyUrl) => {
+    setCopied(copyUrl);
+    navigator.clipboard.writeText(copyUrl);
+    setTimeout(() => setCopied(""), 3000); // Corrigi a string vazia e removi o espaço extra
+  }
 
   return (
-    <section className="mt-16 w-full max-w-x1">
+    <section className="mt-16 w-full max-w-xl"> {/* Corrigi 'max-w-x1' para 'max-w-xl' */}
       {/* search */}
       <div className="flex flex-col w-full gap-2">
         <form
@@ -74,14 +81,14 @@ const Demo = () => {
               onClick={() => setArticle(item)}
               className="link_card"
             >
-              <div className="copy_btn">
+              <div className="copy_btn" onClick={() => handleCopy(item.url)}>
                 <img
-                  src={copy}
+                  src={copied === item.url ? tick : copy}
                   alt="copy_icon"
                   className="w-[40%] h-[40%] object-contain"
                 />
               </div>
-              <p className="flex-1 font-satoshi text-blue-700 font-medium text-sm truncate">
+              <p className="flex-1 font-satoshi text-orange-400 font-medium text-sm truncate">
                 {item.url}
               </p>
             </div>
@@ -93,22 +100,26 @@ const Demo = () => {
         {isFetching ? (
           <img src={loader} alt="loader" className="w-20 h-20 object-contain" />
         ) : error ? (
-          <p className="font-inter font-bold text-black text-center" >
+          <p className="font-inter font-bold text-black text-center">
             Uau, Parece que algo de errado não está certo...
             <br />
             <span className="font-satoshi font-normal text-gray-700">
-            {error?.data?.error}
+              {error?.data?.error}
             </span>
           </p>
         ) : (
-          article.sumamry && (
+          article.summary && (
             <div className='flex flex-col gap-3'>
-              <h2 className='font-satoshi font-bold text-gray-600 text-x1'>
-                article <span
-                className='blue_gradient'>summary</span>
-                </h2>              
+              <h2 className='font-satoshi font-bold text-gray-600 text-xl'> {/* Corrigi 'x1' para 'xl' */}
+                Artigo <span className='orange_gradient'>Resumido:</span>
+              </h2>
+              <div className='summary_box'>
+                <p className='font-inter font-medium text-sm text-gray-700'>
+                  {article.summary}
+                </p>
               </div>
-          )          
+            </div>
+          )
         )}
       </div>
     </section>
