@@ -59,7 +59,7 @@ const Demo = () => {
 
           <input
             type="url"
-            placeholder="Enter a URL"
+            placeholder="Cole um Link aqui"
             value={article.url}
             onChange={(e) => setArticle({ ...article, url: e.target.value })}
             required
