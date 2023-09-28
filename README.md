@@ -32,7 +32,7 @@ With it you can perform an almost instantaneous summary of articles and websites
 .
 .
 .
-**Past here:**
+**Paste here:**
 
 ![exemplo de funcionamento](https://github.com/Nagakburos/Resumidor-de-Artigos-MERN/assets/103370604/7370e061-bae2-4e5c-99c3-6a50e883e5a5)
 
